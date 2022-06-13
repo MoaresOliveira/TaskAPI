@@ -1,5 +1,6 @@
 package io.github.todolist.model;
 
+import io.github.todolist.enums.StatusTaskEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class TaskEntity {
     private String name;
     private String description;
     private Date dateCreation;
+    private StatusTaskEnum status;
 
 
 }
