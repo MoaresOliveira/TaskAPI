@@ -6,6 +6,7 @@ import io.github.todolist.exception.TaskNotFoundException;
 import io.github.todolist.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,13 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @PostMapping("/new")
+    @PostMapping(value = "/new",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TaskVo> createTask(@RequestBody TaskForm form){
         TaskVo task = taskService.createTask(form);
         return ResponseEntity.status(HttpStatus.CREATED).body(task);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping(value ="/update/{id}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TaskVo> createTask(@RequestBody TaskForm form, @PathVariable("id")Long id){
         TaskVo task = taskService.updateTask(form, id);
         if(task != null){
@@ -33,7 +34,7 @@ public class TaskController {
         return ResponseEntity.badRequest().build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(value ="/delete/{id}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<HttpStatus> deleteTask(@PathVariable("id")Long id){
         try {
             taskService.deleteTask(id);
@@ -43,7 +44,7 @@ public class TaskController {
         }
     }
 
-    @GetMapping
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TaskVo>> getAllTasks(){
         List<TaskVo> tasks = taskService.getAllTasks();
         if(tasks.isEmpty()){
@@ -52,7 +53,7 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value ="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TaskVo> getTaskById(@PathVariable("id")Long id){
         TaskVo task = taskService.getTaskById(id);
         if(task == null){

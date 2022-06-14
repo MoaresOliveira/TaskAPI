@@ -28,7 +28,7 @@ public class TaskService {
         Optional<TaskEntity> optionalTask = taskRepository.findById(id);
         if(optionalTask.isPresent()){
             TaskEntity entityToUpdate = optionalTask.get();
-            entityToUpdate.setDescription(form.getDescription());
+            entityToUpdate.update(form);
             TaskEntity entityUpdated = taskRepository.save(entityToUpdate);
             return new TaskVo(entityUpdated);
         }
