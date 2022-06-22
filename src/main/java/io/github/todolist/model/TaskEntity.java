@@ -5,6 +5,7 @@ import io.github.todolist.enums.StatusTaskEnum;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,8 +17,10 @@ public class TaskEntity {
     private Long id;
     private String name;
     private String description;
-    private Date dateCreation;
+    private LocalDate dateCreation;
     private StatusTaskEnum status;
+    @Column(name = "task_order")
+    private Integer order;
 
     public void update(TaskForm form){
         this.name = form.getName();

@@ -21,6 +21,7 @@ public class TaskController {
 
     @PostMapping(value = "/new",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TaskVo> createTask(@RequestBody TaskForm form){
+        System.out.println(form);
         TaskVo task = taskService.createTask(form);
         return ResponseEntity.status(HttpStatus.CREATED).body(task);
     }
