@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Entity
@@ -19,15 +18,15 @@ public class TaskEntity {
     private String description;
     private LocalDate dateCreation;
     private StatusTaskEnum status;
-    @Column(name = "task_order")
-    private Integer order;
+    @Column(name = "task_index")
+    private Integer index;
 
     public void update(TaskForm form){
         this.name = form.getName();
         this.description = form.getDescription();
         this.dateCreation = form.getDateCreation();
         this.status = StatusTaskEnum.valueOf(form.getStatus());
-
+        this.index = form.getIndex();
     }
 }
 

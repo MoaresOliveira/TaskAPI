@@ -5,7 +5,6 @@ import io.github.todolist.model.TaskEntity;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,7 @@ public class TaskVo {
     private String description;
     private LocalDate dateCreation;
     private StatusTaskEnum status;
-    private Integer order;
+    private Integer index;
 
     public TaskVo(TaskEntity entity) {
         this.id = entity.getId();
@@ -25,7 +24,7 @@ public class TaskVo {
         this.description = entity.getDescription();
         this.dateCreation = entity.getDateCreation();
         this.status = entity.getStatus();
-        this.order = entity.getOrder();
+        this.index = entity.getIndex();
     }
 
     public static List<TaskVo> toVoList(List<TaskEntity> entities){

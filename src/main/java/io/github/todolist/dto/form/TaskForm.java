@@ -5,7 +5,6 @@ import io.github.todolist.model.TaskEntity;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 public class TaskForm {
@@ -14,7 +13,7 @@ public class TaskForm {
     private String description;
     private LocalDate dateCreation;
     private String status;
-    private Integer order;
+    private Integer index;
 
     public TaskEntity toEntity(){
         TaskEntity entity = new TaskEntity();
@@ -22,7 +21,7 @@ public class TaskForm {
         entity.setDescription(description);
         entity.setDateCreation(dateCreation);
         entity.setStatus(StatusTaskEnum.valueOf(status));
-        entity.setOrder(order);
+        entity.setIndex(index);
 
         return entity;
     }
