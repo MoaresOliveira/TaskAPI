@@ -39,7 +39,7 @@ public class TaskController {
     public ResponseEntity<HttpStatus> deleteTask(@PathVariable("id")Long id){
         try {
             taskService.deleteTask(id);
-            return ResponseEntity.status(HttpStatus.FOUND).build();
+            return ResponseEntity.status(HttpStatus.OK).build();
         } catch (TaskNotFoundException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
